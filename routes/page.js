@@ -1,6 +1,13 @@
 const express = require('express');
+const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 
 const router = express.Router();
+
+//로그인 여부에 따라 다른 페이지 렌더링
+router.use((req, res, next) => {
+    res.locals.admin = req.admin;
+    next();
+});
 
 router.get('/', (req, res) => {
     res.render('index', { title: '메인 페이지' });
@@ -14,6 +21,11 @@ router.get('/profile', (req, res) => {
 //병원 관계자 로그인
 router.get('/login', (req, res) => {
     res.render('login', { title: '로그인 - HealthCare' });
+});
+
+//병원 관계자 정보 등록
+router.get('/register', (req, res) => {
+    res.render('register', { title: '관리자 등록 - HealthCare' });
 });
 
 module.exports = router;

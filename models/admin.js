@@ -9,7 +9,7 @@ module.exports = class Admin extends Sequelize.Model {
                 unique: true,
             },
             name : {
-                type: Sequelize.STRING(15),
+                type: Sequelize.STRING(30),
                 allowNull: false,
             },
             password: {

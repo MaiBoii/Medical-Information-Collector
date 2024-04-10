@@ -1,30 +1,44 @@
 const Sequelize = require('sequelize');
 
-module.exports = class Admin extends Sequelize.Model {
+module.exports = class Biometric extends Sequelize.Model {
     static init(sequelize) {
         return super.init({
-            email: {
-                type: Sequelize.STRING(40),
-                allowNull: false,
-                unique: true,
-            },
-            name : {
-                type: Sequelize.STRING(15),
-                allowNull: false,
-            },
-            password: {
-                type: Sequelize.STRING(100),
-                allowNull: false,
-            },
+            oxygen_saturation: {
+                type: Sequelize.DECIMAL(5, 2),
+                allowNull: false
+              },
+              respiration_rate: {
+                type: Sequelize.INTEGER,
+                allowNull: false
+              },
+              heart_rate: {
+                type: Sequelize.INTEGER,
+                allowNull: false
+              },
+              distance_travelled: {
+                type: Sequelize.DECIMAL(10, 2),
+                allowNull: false
+              },
+              temperature: {
+                type: Sequelize.DECIMAL(5, 2),
+                allowNull: false
+              }
         }, {
             sequelize,
             timestamps: false,
             underscored: false,
-            modelName: 'Admin',
-            tableName: 'admins',
+            modelName: 'BioMetric',
+            tableName: 'biometric',
             paranoid: false,
             charset: 'utf8',
             collate: 'utf8_general_ci',
+        });
+    }
+
+    static associate(db) {
+        db.Biometric.belongsTo(db.Patient, { 
+          foreignKey: 'patient_id', 
+          targetKey: 'id' 
         });
     }
 }
