@@ -23,8 +23,8 @@ module.exports = class Patient extends Sequelize.Model {
                 type: Sequelize.STRING(10),
                 allowNull: false
               },
-              occupation: {
-                type: Sequelize.STRING(30),
+              email: {
+                type: Sequelize.STRING(40),
                 allowNull: false
               },
               address: {

@@ -7,10 +7,10 @@ html {
 }
 
 body{
-    font-family: "Lato", sans-serif;
-    color: #888;
-    font-weight: 300;
+    font-family: sans-serif;
+    color: #03e9f4;
     margin: 0;
+    background: linear-gradient(#141e30, #243b55);
 }
 
 #main{
@@ -33,6 +33,6 @@ body{
 }
 
 @keyframes type{
-	  from{box-shadow: inset -3px 0px 0px #888;}
+	  from{box-shadow: inset -3px 0px 0px #03e9f4;}
 	  to{box-shadow: inset -3px 0px 0px transparent;}
 }

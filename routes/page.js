@@ -10,12 +10,16 @@ router.use((req, res, next) => {
 });
 
 router.get('/', (req, res) => {
-    res.render('index', { title: '메인 페이지' });
+    res.render('index', { title: '메인 페이지 - HealthCare' });
 });
 
 //환자 정보 프로필
 router.get('/profile', (req, res) => {
     res.render('profile', { title: '환자 정보 - HealthCare' });
+});
+
+router.get('/patient', (req, res) => {
+    res.render('patient', { title: '환자 리스트 - HealthCare' });
 });
 
 //병원 관계자 로그인

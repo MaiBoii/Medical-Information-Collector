@@ -1,10 +1,112 @@
-<head><link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="style.css">
+     
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+    <title>대시보드 -헬스케어</title>
 </head>
-<link rel="stylesheet" href="/error.css">
-<div id="main">
-    <div class="fof">
-            <h1>캡스톤 디자인 프로젝트 진행 중입니다.</h1>
-    </div>
-</div>
+<body>
+    <nav>
+        <div class="logo-name">
+            <div class="logo-image">
+               <img src="images/logo.png" alt="">
+            </div>
+
+            <span class="logo_name">HealthCare</span>
+        </div>
+
+        <div class="menu-items">
+            <ul class="nav-links">
+                <li><a href="#">
+                    <i class="uil uil-estate"></i>
+                    <span class="link-name">홈</span>
+                </a></li>
+                <li><a href="patient">
+                    <i class="uil uil-files-landscapes"></i>
+                    <span class="link-name">환자 목록</span>
+                </a></li>
+                <li><a href="#">
+                    <i class="uil uil-chart"></i>
+                    <span class="link-name">통계</span>
+                </a></li>
+                <li><a href="#">
+                    <i class="uil uil-share"></i>
+                    <span class="link-name">공유</span>
+                </a></li>
+            </ul>
+            
+            <ul class="logout-mode">
+                <li><a href="#">
+                    <i class="uil uil-signout"></i>
+                    <span class="link-name">로그아웃</span>
+                </a></li>
+
+                <li class="mode">
+                    <a href="#">
+                        <i class="uil uil-moon"></i>
+                    <span class="link-name">다크 모드</span>
+                </a>
+
+                <div class="mode-toggle">
+                  <span class="switch"></span>
+                </div>
+            </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="dashboard">
+        <div class="top">
+            <i class="uil uil-bars sidebar-toggle"></i>
+
+            <div class="search-box">
+                <i class="uil uil-search"></i>
+                <input type="text" placeholder="Search here...">
+            </div>
+            
+            <!--<img src="images/profile.jpg" alt="">-->
+        </div>
+
+        <div class="dash-content">
+            <div class="overview">
+                <div class="title">
+                    <span class="text">환자 정보</span>
+                </div>
+
+                <div class="boxes">
+                    <div class="box box1">
+                        <i class="uil uil-heartbeat"></i>
+                        <span class="text">심박수</span>
+                        <span class="number">50,120</span>
+                    </div>
+                    <div class="box box2">
+                        <i class="uil uil-temperature-plus"></i>
+                        <span class="text">체온</span>
+                        <span class="number">20,120</span>
+                    </div>
+                    <div class="box box3">
+                        <i class="uil uil-accessible-icon-alt"></i>
+                        <span class="text">이동 거리</span>
+                        <span class="number">10,120</span>
+                    </div>
+                    <div class="box box4">
+                        <i class="uil uil-wind"></i>
+                        <span class="text">호흡 수치</span>
+                        <span class="number">10,120</span>
+                    </div>
+                </div>
+            </div>
+
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
