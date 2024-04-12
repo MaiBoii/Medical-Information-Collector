@@ -1,28 +1,30 @@
 <head>
     <link rel="stylesheet" href="/login.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 </head>
-<div class="login-box">
-    <h2>Admin Login</h2>
+
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+    <h2 class="active" > Sign In </h2>
+    <h2 class="inactive underlineHover" >Sign Up </h2>
+
+    <!-- Icon -->
+    <div class="Icon">
+      <i class="uil uil-stethoscope-alt"></i>
+    </div>
+
+    <!-- Login Form -->
     <form>
-      <div class="user-box">
-        <input type="text" name="" required="">
-        <label>E-Mail</label>
-      </div>
-      <div class="user-box">
-        <input type="password" name="" required="">
-        <label>Password</label>
-      </div>
-      <div class="submit">
-        <a href="#">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          Submit
-        </a>
-    </div>
-    <div>
-      <p class="message">Not registered? <a class = "message" href="./register">Create an account</a></p>
-    </div>
+      <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
+      <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
+      <input type="submit" class="fadeIn fourth" value="Log In">
     </form>
+
+    <!-- Remind Password -->
+    <div id="formFooter">
+      <a class="underlineHover" href="register">계정이 없으세요?</a>
+    </div>
+
+  </div>
 </div>

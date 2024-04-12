@@ -1,32 +1,32 @@
 <head>
-    <link rel="stylesheet" href="/login.css">
+  <link rel="stylesheet" href="/login.css">
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 </head>
-<div class="login-box">
-    <h2>Admin Register</h2>
-    <form>
-      <div class="user-box">
-        <input type="text" name="" required="">
-        <label>E-Mail</label>
-      </div>
-      <div class="user-box">
-        <input type="text" name="" required="">
-        <label>Name</label>
-      </div>
-      <div class="user-box">
-        <input type="password" name="" required="">
-        <label>Password</label>
-      </div>
-      <div class="submit">
-      <a href="#">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        Register!
-      </a>
+
+
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+    <h2 class="inactive underlineHover">Sign In </h2>
+    <h2 class="active">Sign Up </h2>
+
+    <!-- Icon -->
+    <div class="Icon">
+      <i class="uil uil-user-md"></i>
     </div>
-    <div>
-        <p class="message">Already Have Account? <a class = "message" href="./login">Sign In!</a></p>
-      </div>
+
+    <!-- Login Form -->
+    <form>
+      <input type="text" id="login" class="fadeIn second" name="login" placeholder="E-mail">
+      <input type="text" id="password" class="fadeIn third" name="login" placeholder="Name">
+      <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
+      <input type="submit" class="fadeIn fourth" value="Log In">
     </form>
+
+    <!-- Login -->
+    <div id="formFooter">
+      <a class="underlineHover" href="login">Already have Account?</a>
+    </div>
+
+  </div>
 </div>
