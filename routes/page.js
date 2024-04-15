@@ -1,5 +1,6 @@
 const express = require('express');
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
+const { Patient } = require('../models');
 
 const router = express.Router();
 
@@ -33,5 +34,19 @@ router.get('/login', (req, res) => {
 router.get('/register', (req, res) => {
     res.render('register', { title: '관리자 등록 - HealthCare' });
 });
+
+
+//nunjucks 등록 테스트
+router.get('/test', async (req, res, next ) => {
+    try{
+        const patients = await Patient.findAll();
+        res.render('test', { 
+            patients 
+        });
+    } catch (err){
+        console.error(err);
+        next(err);
+    }
+  });
 
 module.exports = router;
