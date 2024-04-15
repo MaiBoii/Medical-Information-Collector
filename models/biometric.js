@@ -3,7 +3,7 @@ const Sequelize = require('sequelize');
 module.exports = class Biometric extends Sequelize.Model {
     static init(sequelize) {
         return super.init({
-            oxygen_saturation: {
+              oxygen_saturation: {
                 type: Sequelize.DECIMAL(5, 2),
                 allowNull: false
               },

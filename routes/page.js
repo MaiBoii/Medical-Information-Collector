@@ -9,6 +9,7 @@ router.use((req, res, next) => {
     next();
 });
 
+// 메인 페이지
 router.get('/', (req, res) => {
     res.render('index', { title: '메인 페이지 - HealthCare' });
 });
@@ -18,6 +19,7 @@ router.get('/profile', (req, res) => {
     res.render('profile', { title: '환자 정보 - HealthCare' });
 });
 
+//환자 리스트 페이지
 router.get('/patient', (req, res) => {
     res.render('patient', { title: '환자 리스트 - HealthCare' });
 });
