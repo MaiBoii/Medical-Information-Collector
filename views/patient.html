@@ -77,67 +77,42 @@
                 <div class="title">
                     <span class="text">환자 리스트</span>
                 </div>
-
                 <div class="activity-data">
                     <div class="data names">
                         <span class="data-title">ID</span>
-                        <span class="data-list">1</span>
-                        <span class="data-list">2</span>
-                        <span class="data-list">3</span>
-                        <span class="data-list">4</span>
-                        <span class="data-list">5</span>
-                        <span class="data-list">6</span>
-                        <span class="data-list">7</span>
+                        {% for patient in patients %}
+                        <span class="data-list"> {{ patient.id }} </span>
+                        {% endfor %}
                     </div>
                     <div class="data names">
                         <span class="data-title">환자명</span>
-                        <span class="data-list">Prem Shahi</span>
-                        <span class="data-list">Deepa Chand</span>
-                        <span class="data-list">Manisha Chand</span>
-                        <span class="data-list">Pratima Shahi</span>
-                        <span class="data-list">Man Shahi</span>
-                        <span class="data-list">Ganesh Chand</span>
-                        <span class="data-list">Bikash Chand</span>
+                        {% for patient in patients %}
+                        <span class="data-list">{{ patient.name}} </span>
+                        {% endfor %}
                     </div>
                     <div class="data joined">
                         <span class="data-title">나이</span>
-                        <span class="data-list">2022-02-12</span>
-                        <span class="data-list">2022-02-12</span>
-                        <span class="data-list">2022-02-13</span>
-                        <span class="data-list">2022-02-13</span>
-                        <span class="data-list">2022-02-14</span>
-                        <span class="data-list">2022-02-14</span>
-                        <span class="data-list">2022-02-15</span>
+                        {% for patient in patients %}
+                        <span class="data-list">{{patient.age}}</span>
+                        {% endfor %}
                     </div>
                     <div class="data email">
                         <span class="data-title">이메일</span>
-                        <span class="data-list">premshahi@gmail.com</span>
-                        <span class="data-list">deepachand@gmail.com</span>
-                        <span class="data-list">prakashhai@gmail.com</span>
-                        <span class="data-list">manishachand@gmail.com</span>
-                        <span class="data-list">pratimashhai@gmail.com</span>
-                        <span class="data-list">manshahi@gmail.com</span>
-                        <span class="data-list">ganeshchand@gmail.com</span>
+                        {% for patient in patients %}
+                        <span class="data-list"> {{patient.email}} </span>
+                        {% endfor %}
                     </div>
                     <div class="data type">
                         <span class="data-title">호실</span>
-                        <span class="data-list">New</span>
-                        <span class="data-list">Member</span>
-                        <span class="data-list">Member</span>
-                        <span class="data-list">New</span>
-                        <span class="data-list">Member</span>
-                        <span class="data-list">New</span>
-                        <span class="data-list">Member</span>
+                        {% for patient in patients %}
+                        <span class="data-list">{{ patient.room_number}}</span>
+                        {% endfor %}
                     </div>
                     <div class="data status">
                         <span class="data-title">상태</span>
-                        <span class="data-list">Liked</span>
-                        <span class="data-list">Liked</span>
-                        <span class="data-list">Liked</span>
-                        <span class="data-list">Liked</span>
-                        <span class="data-list">Liked</span>
-                        <span class="data-list">Liked</span>
-                        <span class="data-list">Liked</span>
+                        {% for patient in patients %}
+                        <span class="data-list">{{ patient.gender }}</span>
+                        {% endfor %}
                     </div>
                 </div>
             </div>

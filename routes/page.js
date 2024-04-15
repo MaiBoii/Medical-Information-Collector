@@ -21,9 +21,18 @@ router.get('/profile', (req, res) => {
 });
 
 //환자 리스트 페이지
-router.get('/patient', (req, res) => {
-    res.render('patient', { title: '환자 리스트 - HealthCare' });
-});
+router.get('/patient', async (req, res, next ) => {
+    try{
+        const patients = await Patient.findAll();
+        res.render('patient', { 
+            patients 
+        });
+    } catch (err){
+        console.error(err);
+        next(err);
+    }
+  });
+
 
 //병원 관계자 로그인
 router.get('/login', (req, res) => {
