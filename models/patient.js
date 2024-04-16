@@ -8,7 +8,7 @@ module.exports = class Patient extends Sequelize.Model {
                 allowNull: false
               },
               gender: {
-                type: Sequelize.ENUM('Male', 'Female', 'Other'),
+                type: Sequelize.ENUM('남성', '여성', '기타'),
                 allowNull: false
               },
               age: {
@@ -29,6 +29,10 @@ module.exports = class Patient extends Sequelize.Model {
               },
               address: {
                 type: Sequelize.STRING(100),
+                allowNull: false
+              },
+              status:{
+                type: Sequelize.ENUM('안전', '주의', '위험'),
                 allowNull: false
               }
         }, {

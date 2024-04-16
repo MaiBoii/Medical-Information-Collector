@@ -289,14 +289,14 @@ nav.close ~ .dashboard .top{
     color: var(--text-color);
     cursor: pointer;
 }
-.dashboard .top .search-box{
+.dashboard .top .profile-box{
     position: relative;
     height: 45px;
     max-width: 600px;
     width: 100%;
     margin: 0 30px;
 }
-.top .search-box input{
+.top .profile-box input{
     position: absolute;
     border: 1px solid var(--border-color);
     background-color: var(--panel-color);
@@ -309,15 +309,27 @@ nav.close ~ .dashboard .top{
     font-weight: 400;
     outline: none;
 }
-.top .search-box i{
+.top .profile-box i{
     position: absolute;
-    left: 15px;
+    font-size: 30px;
+    z-index: 10;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--black-light-color);
+    justify-content: space-between;
+}
+
+.top .profile-box .profile-name{
+    position: absolute;
+    right: 10px;
     font-size: 22px;
     z-index: 10;
     top: 50%;
     transform: translateY(-50%);
     color: var(--black-light-color);
 }
+
 .top img{
     width: 40px;
     border-radius: 50%;

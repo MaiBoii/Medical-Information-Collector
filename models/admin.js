@@ -21,7 +21,7 @@ module.exports = class Admin extends Sequelize.Model {
             timestamps: false,
             underscored: false,
             modelName: 'Admin',
-            tableName: 'admins',
+            tableName: 'admin',
             paranoid: false,
             charset: 'utf8',
             collate: 'utf8_general_ci',

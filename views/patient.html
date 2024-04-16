@@ -6,9 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" href="style.css">
+    <style>
+        .safe { color: green; }
+        .caution { color: orange; }
+        .danger { color: red; }
+      </style>
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
-    <title>대시보드 -헬스케어</title>
+    <title>환자 리스트 -헬스케어</title>
 </head>
 <body>
     <nav>
@@ -26,7 +31,7 @@
                     <i class="uil uil-estate"></i>
                     <span class="link-name">홈</span>
                 </a></li>
-                <li><a href="patient">
+                <li><a>
                     <i class="uil uil-files-landscapes"></i>
                     <span class="link-name">환자 목록</span>
                 </a></li>
@@ -79,6 +84,7 @@
                             <th class="category">나이</th>
                             <th class="category">호실</th>
                             <th class="category">이메일</th>
+                            <th class="category">상태</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -90,6 +96,14 @@
                             <td><a href="/patient/{{ patient.id }}">{{ patient.age }}</a></td>
                             <td><a href="/patient/{{ patient.id }}">{{ patient.room_number }}</a></td>
                             <td><a href="/patient/{{ patient.id }}">{{ patient.email }}</a></td>
+                            <td><a href="/patient/{{ patient.id }}"
+                                class="{% if patient.status == '안전' %}safe
+                                       {% elif patient.status == '주의' %}caution
+                                       {% else %}danger
+                                       {% endif %}">
+                                       {{ patient.status }}
+                                    </a>
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>

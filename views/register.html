@@ -1,14 +1,16 @@
 <head>
+  <title>관계자 등록 -헬스케어</title>
   <link rel="stylesheet" href="/login.css">
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 </head>
+
 
 <div class="wrapper fadeInDown">
   <div id="formContent">
     
     <!-- Tabs Titles -->
-    <h2 class="inactive underlineHover">로그인</h2>
-    <h2 class="active">회원가입</h2>
+    <a href="login"><h2 class="inactive underlineHover">로그인</h2></a>
+    <h2 class="active">관계자 등록</h2>
     <!-- Icon -->
     <div class="Icon">
       <i class="uil uil-user-md"></i>
@@ -17,15 +19,15 @@
     <!-- Login Form -->
     <form id="join-form" action="/auth/register" method="post">
       <div class="input-group">
-        <input type="text" id="login" name="email" placeholder="E-mail">
+        <input type="text" id="login" class="fadeIn first" name="email" placeholder="E-mail">
       </div>
       <div class="input-group">
-        <input type="text" id="name" name="name" placeholder="Name">
+        <input type="text" id="name" class="fadeIn second" name="name" placeholder="Name">
       </div>
       <div class="input-group">
-        <input type="password" id="password" name="password" placeholder="password">
+        <input type="password" id="password" class="fadeIn third" name="password" placeholder="Password">
       </div>
-      <button id="join-btn" type="submit" class="btn">회원가입</button>
+      <button id="join-btn" type="submit" class="btn fadeIn fourth">관계자 등록</button>
     </form>
 
     <!-- Login -->

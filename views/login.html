@@ -1,13 +1,15 @@
 <head>
+    <title>로그인-헬스케어</title>
     <link rel="stylesheet" href="/login.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 </head>
 
 <div class="wrapper fadeInDown">
   <div id="formContent">
+    
     <!-- Tabs Titles -->
     <h2 class="active" > 로그인 </h2>
-    <h2 class="inactive underlineHover" > 회원가입 </h2>
+    <a href="register"><h2 class="inactive underlineHover" > 관계자 등록 </h2></a>
 
     <!-- Icon -->
     <div class="Icon">
@@ -16,9 +18,9 @@
 
     <!-- Login Form -->
     <form action="/auth/login" method="post">
-      <input type="text" id="login" class="fadeIn second" name="email" placeholder="E-mail">
-      <input type="text" id="password" class="fadeIn third" name="password" placeholder="password">
-      <input type="submit" class="fadeIn fourth" value="Log In">
+      <input type="text" id="login" class="fadeIn first" name="email" placeholder="E-mail">
+      <input type="text" id="password" class="fadeIn second" name="password" placeholder="Password">
+      <button type="submit" class="btn fadeIn third">로그인</button>
     </form>
 
     <!-- Remind Password -->
