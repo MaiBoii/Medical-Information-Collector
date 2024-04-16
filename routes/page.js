@@ -15,19 +15,6 @@ router.get('/', (req, res) => {
     res.render('index', { title: '메인 페이지 - HealthCare' });
 });
 
-//환자 정보 프로필
-router.get('/profile', async (req, res, next ) => {
-    try{
-        const patients = await Patient.findAll();
-        res.render('profile', { 
-            patients 
-        });
-    } catch (err){
-        console.error(err);
-        next(err);
-    }
-});
-
 //환자 리스트 페이지
 router.get('/patient', async (req, res, next ) => {
     try{
@@ -35,6 +22,23 @@ router.get('/patient', async (req, res, next ) => {
         res.render('patient', { 
             patients 
         });
+    } catch (err){
+        console.error(err);
+        next(err);
+    }
+  });
+
+// 환자 정보 조회 페이지 라우팅
+router.get('/patient/:id', async (req, res, next) => {
+    try {
+      const patientId = req.params.id;
+      const patient = await Patient.findByPk(patientId); // 환자 정보 조회
+        if (!patient) {
+            return res.status(404).send('존재하지 않는 환자입니다.');
+        }
+      res.render('profile', { 
+        patient 
+    });
     } catch (err){
         console.error(err);
         next(err);

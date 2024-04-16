@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
     <title>환자 정보 -헬스케어</title>
@@ -70,11 +70,33 @@
             
             <!--<img src="images/profile.jpg" alt="">-->
         </div>
-
+        
         <div class="dash-content">
             <div class="overview">
-                <div class="title">
-                    <span class="text">환자 정보</span>
+                <div class="profile">
+                        <table class="profile-table">
+                                  <tr>
+                                    <td rowspan="3" class="profile-img ">
+                                        <img src="/할배.jpeg">
+                                    </td>
+                                    <td class="profile-category">이름 : </td>
+                                    <td class="profile-info">{{ patient.name }}</td>
+                                    <td class="profile-category">호실 : </td>
+                                    <td class="profile-info">{{ patient.room_number }} 호</td>
+                                  </tr>
+                                  <tr>
+                                    <td class="profile-category">성별 : </td>
+                                    <td class="profile-info">{{ patient.gender }}</td>
+                                    <td class="profile-category">E-Mail : </td>
+                                    <td class="profile-info">{{ patient.email }}</td>
+                                  </tr>
+                                  <tr>
+                                    <td class="profile-category">나이 : </td>
+                                    <td class="profile-info">{{ patient.age }} 세</td>
+                                    <td class="profile-category">상태 : </td>
+                                    <td class="profile-info">{{ patient.status }}</td>
+                                  </tr>
+                    </table>
                 </div>
 
                 <div class="boxes">
@@ -94,8 +116,13 @@
                         <span class="number">10,120</span>
                     </div>
                     <div class="box box4">
-                        <i class="uil uil-wind"></i>
+                        <i class="uil uil-head-side-cough"></i>
                         <span class="text">호흡 수치</span>
+                        <span class="number">10,120</span>
+                    </div>
+                    <div class="box box5">
+                        <i class="uil uil-wind"></i>
+                        <span class="text">산소포화도</span>
                         <span class="number">10,120</span>
                     </div>
                 </div>
@@ -105,6 +132,6 @@
         </div>
     </section>
 
-    <script src="script.js"></script>
+    <script src="/script.js"></script>
 </body>
 </html>
