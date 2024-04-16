@@ -16,8 +16,16 @@ router.get('/', (req, res) => {
 });
 
 //환자 정보 프로필
-router.get('/profile', (req, res) => {
-    res.render('profile', { title: '환자 정보 - HealthCare' });
+router.get('/profile', async (req, res, next ) => {
+    try{
+        const patients = await Patient.findAll();
+        res.render('profile', { 
+            patients 
+        });
+    } catch (err){
+        console.error(err);
+        next(err);
+    }
 });
 
 //환자 리스트 페이지
@@ -33,29 +41,14 @@ router.get('/patient', async (req, res, next ) => {
     }
   });
 
-
 //병원 관계자 로그인
 router.get('/login', (req, res) => {
     res.render('login', { title: '로그인 - HealthCare' });
 });
 
 //병원 관계자 정보 등록
-router.get('/register', (req, res) => {
+router.get('/register', isNotLoggedIn, (req, res) => {
     res.render('register', { title: '관리자 등록 - HealthCare' });
 });
-
-
-//nunjucks 등록 테스트
-router.get('/test', async (req, res, next ) => {
-    try{
-        const patients = await Patient.findAll();
-        res.render('test', { 
-            patients 
-        });
-    } catch (err){
-        console.error(err);
-        next(err);
-    }
-  });
 
 module.exports = router;

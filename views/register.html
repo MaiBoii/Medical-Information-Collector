@@ -3,30 +3,44 @@
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 </head>
 
-
 <div class="wrapper fadeInDown">
   <div id="formContent">
+    
     <!-- Tabs Titles -->
-    <h2 class="inactive underlineHover">Sign In </h2>
-    <h2 class="active">Sign Up </h2>
-
+    <h2 class="inactive underlineHover">로그인</h2>
+    <h2 class="active">회원가입</h2>
     <!-- Icon -->
     <div class="Icon">
       <i class="uil uil-user-md"></i>
     </div>
 
     <!-- Login Form -->
-    <form>
-      <input type="text" id="login" class="fadeIn second" name="login" placeholder="E-mail">
-      <input type="text" id="password" class="fadeIn third" name="login" placeholder="Name">
-      <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
-      <input type="submit" class="fadeIn fourth" value="Log In">
+    <form id="join-form" action="/auth/register" method="post">
+      <div class="input-group">
+        <input type="text" id="login" name="email" placeholder="E-mail">
+      </div>
+      <div class="input-group">
+        <input type="text" id="name" name="name" placeholder="Name">
+      </div>
+      <div class="input-group">
+        <input type="password" id="password" name="password" placeholder="password">
+      </div>
+      <button id="join-btn" type="submit" class="btn">회원가입</button>
     </form>
 
     <!-- Login -->
     <div id="formFooter">
-      <a class="underlineHover" href="login">Already have Account?</a>
+      <a class="underlineHover" href="login">관리자이신가요?</a>
     </div>
-
   </div>
 </div>
+
+{% block script %}
+  <script>
+    window.onload = () => {
+      if (new URL(location.href).searchParams.get('error')) {
+        alert('이미 존재하는 이메일입니다.');
+      }
+    };
+  </script>
+{% endblock %}

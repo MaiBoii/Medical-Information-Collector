@@ -27,6 +27,64 @@ body{
     background-color: var(--primary-color);
 }
 
+.activity-data{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0; /* 경계 간격 제거 */
+}
+td {
+    padding: 8px;
+    text-align: center;
+    border-top: 1px solid black; /* 각 셀 위쪽에 가로줄 추가 */
+    padding: 10px;
+}
+
+td:first-child {
+    border-left: 1px solid black; /* 첫 번째 열에 왼쪽 세로 경계선 추가 */
+}
+td:last-child {
+    border-right: 1px solid black; /* 첫 번째 열에 왼쪽 세로 경계선 추가 */
+}
+
+
+th.category {
+    border-top: 1px solid black; /* 카테고리 열의 맨 위 가로줄 */
+    border-bottom: 1px solid black; /* 카테고리 열의 맨 아래 가로줄 */
+    border-left: 1px solid black; /* 카테고리 열의 왼쪽 세로줄 */
+    padding: 8px;
+    text-align: center;
+    background-color: lightblue; /* 카테고리 열의 배경색 */
+}
+
+th.category:hover {
+    background-color: lightblue; /* 호버 시 배경색 유지 */
+}
+
+tr:hover {
+    background-color: lightblue;
+}
+
+td a {
+    display: block; /* 링크를 블록 수준 요소로 만들어 전체 열을 차지하도록 함 */
+    text-decoration: none; /* 링크 밑줄 제거 */
+    color: inherit; /* 기본 링크 색상 상속 */
+    width: 100%; /* 열 전체 너비를 사용 */
+    height: 100%; /* 열 전체 높이를 사용 */
+}
+
+/* hover 시의 스타일 */
+.data-list:hover {
+    background-color: lightgray; /* hover 시 배경색 변경 */
+    color: blue; /* hover 시 글자색 변경 */
+}
+
 body.dark{
     --primary-color: #3A3B3C;
     --panel-color: #242526;
@@ -336,6 +394,31 @@ nav.close ~ .dashboard .top{
 }
 .boxes .box4{
     color: rgb(55, 175, 255)
+}
+
+.boxes .box1:hover {
+    border-radius: 5px;
+    box-shadow: 0 0 5px #f40303,
+                0 0 25px #f40303,
+                0 0 50px #f40303
+}
+.boxes .box2:hover {
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgb(255, 165, 55),
+                0 0 25px rgb(255, 165, 55),
+                0 0 50px rgb(255, 165, 55)
+}
+.boxes .box3:hover {
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgb(255, 55, 202),
+                0 0 25px rgb(255, 55, 202),
+                0 0 50px rgb(255, 55, 202)
+}
+.boxes .box4:hover {
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgb(55, 175, 255),
+                0 0 25px rgb(55, 175, 255),
+                0 0 50px rgb(55, 175, 255)
 }
 
 .dash-content .activity .activity-data{
