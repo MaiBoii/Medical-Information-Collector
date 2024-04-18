@@ -40,14 +40,14 @@
                     <span class="link-name">공유</span>
                 </a></li>
             </ul>
-            
-            {% if admin %}
+            {% if user and user.id %}
             <ul class="logout-mode">
-                <li><a href="#">
-                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                    <span class="link-name">로그아웃</span>
-                </a></li>
-
+                <li>
+                    <a href="/auth/logout">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        <span class="link-name">로그아웃</span>
+                    </a>
+                </li>
                 <li class="mode">
                     <a href="#">
                         <i class="fa-solid fa-moon"></i>
@@ -78,15 +78,22 @@
         </div>
     </nav>
     <section class="dashboard">
-        {% if admin %}
+        {% if user and user.id %}
         <div class="top">
             <i class="fa-solid fa-list-ul sidebar-toggle"></i>
             <div class="profile-box">
                 <i class="fa-solid fa-user-doctor"></i>
-                <span class="profile-name">안녕하세요 마승욱 선생님!</span>
+                <span class="profile-name">안녕하세요 {{user.name}} 선생님!</span>
             </div>
         </div>
         {% else %}
+        <div class="top">
+            <i class="fa-solid fa-list-ul sidebar-toggle"></i>
+                <div class="profile-box">
+                    <i class="fa-solid fa-user-doctor"></i>
+                    <span class="profile-name">로그인 하시겠어요?!</span>
+                </div>
+        </div>
         {% endif %}
         <div class="dash-content">
             <div class="overview">

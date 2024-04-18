@@ -8,13 +8,15 @@ module.exports = () => {
     passport.use(new LocalStrategy({
         usernameField: 'email',
         passwordField: 'password',
+        passReqToCallback: false,
     }, async (email, password, done) => {
         try {
             const exAdmin = await Admin.findOne({ where: { email } });
             if (exAdmin) {
                 const result = await bcrypt.compare(password, exAdmin.password);
-            if (result) {
-                done(null, exAdmin);
+                if (result) {
+                    done(null, exAdmin);
+                    console.log('세션에 exAdmin 저장 완료', exAdmin);
             } else {
                 done(null, false, { message: '비밀번호가 일치하지 않습니다.' });
             }

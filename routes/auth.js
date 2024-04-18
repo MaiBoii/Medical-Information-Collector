@@ -26,23 +26,23 @@ router.post('/register', isNotLoggedIn, async (req, res, next) => {
     }
 });
 
-
-router.post('/login', (req, res, next) => {
-    passport.authenticate('local', (authError, admin, info) => {
+router.post('/login', isNotLoggedIn, (req, res, next) => {
+    passport.authenticate('local', (authError, user, info) => {
         if (authError) {
             console.error(authError);
             return next(authError);
         }
-        if (!admin) {
+        if (!user) {
             return res.redirect(`/?loginError=${info.message}`);
         }
-        return req.login(admin, (loginError) => {
+        return req.login(user, (loginError) => {
             if (loginError) {
                 console.error(loginError);
                 return next(loginError);
             }
             console.log('로그인 성공');
-            return res.redirect('/patient');
+            console.log('세션에 저장된 admin', user);
+            return res.redirect('/');
         });
     })(req, res, next);
 });

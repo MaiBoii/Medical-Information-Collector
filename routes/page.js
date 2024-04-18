@@ -6,7 +6,8 @@ const router = express.Router();
 
 //로그인 여부에 따라 다른 페이지 렌더링
 router.use((req, res, next) => {
-    res.locals.admin = req.admin;
+    res.locals.user = req.user;
+    console.log('res.locals.user', res.locals.user);
     next();
 });
 
@@ -23,6 +24,7 @@ router.get('/patient', async (req, res, next ) => {
             patients 
         });
     } catch (err){
+        console.log('왠지모를에러가 발생했슴둥')
         console.error(err);
         next(err);
     }

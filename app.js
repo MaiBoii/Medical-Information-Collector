@@ -9,9 +9,9 @@ const passport = require('passport');
 
 dotenv.config();
 const pageRouter = require('./routes/page');
+const authRouter = require('./routes/auth');   
 const { sequelize } = require('./models');
 const passportConfig = require('./passport');
-const authRouter = require('./routes/auth');   
 
 const app = express();
 passportConfig(); // Passport 설정
@@ -34,16 +34,16 @@ app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser(process.env.COOKIE_SECRET));
+app.use(cookieParser('asdasdasd'));
 app.use(session({
     resave: false,
     saveUninitialized: false,
-    secret: process.env.COOKIE_SECRET,
+    secret: 'asdasdasd',
     cookie: {
-        httpOnly: true,
-        secure: false,
+      httpOnly: true,
+      secure: false,
     },
-}));
+  }));
 app.use(passport.initialize());
 app.use(passport.session());
 
