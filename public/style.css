@@ -139,16 +139,6 @@ nav .logo-name{
     display: flex;
     align-items: center;
 }
-nav .logo-image{
-    display: flex;
-    justify-content: center;
-    min-width: 45px;
-}
-nav .logo-image img{
-    width: 40px;
-    object-fit: cover;
-    border-radius: 50%;
-}
 
 nav .logo-name .logo_name{
     font-size: 22px;
@@ -314,7 +304,7 @@ nav.close ~ .dashboard .top{
 }
 
 .dashboard .top .profile-box i{
-    font-size: 26px;
+    font-size: 24px;
 }
 .dashboard .top .profile-box:hover{
     color: var(--primary-color);
@@ -337,9 +327,8 @@ nav.close ~ .dashboard .top{
     position: relative;
     height: 35px;
     width: 35px;
-    background-color: var(--primary-color);
     border-radius: 6px;
-    color: var(--title-icon-color);
+    color: var(--text-color);
     display: flex;
     align-items: center;
     justify-content: center;
