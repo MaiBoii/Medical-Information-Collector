@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
-const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
+const morgan = require('morgan');
 const dotenv = require('dotenv');
 const session = require('express-session');
 const nunjucks = require('nunjucks');
@@ -61,7 +61,7 @@ app.use((err, req, res, next) => {
     res.locals.error = process.env.NODE_ENV !== 'production' ? err : {};
     res.status(err.status || 500);
     res.render('error');
-});
+  });
 
 app.listen(app.get('port'), () => {
     console.log(app.get('port'),'번 포트에서 실행 중입니다.');

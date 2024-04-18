@@ -46,13 +46,18 @@ router.get('/patient/:id', async (req, res, next) => {
   });
 
 //병원 관계자 로그인
-router.get('/login', (req, res) => {
+router.get('/login', isNotLoggedIn, (req, res) => {
     res.render('login', { title: '로그인 - HealthCare' });
 });
 
 //병원 관계자 정보 등록
 router.get('/register', isNotLoggedIn, (req, res) => {
     res.render('register', { title: '관리자 등록 - HealthCare' });
+});
+
+router.get('/test', (req, res) => {
+    console.log('test');
+    res.render('test', { title: '실험용 - HealthCare' });
 });
 
 module.exports = router;

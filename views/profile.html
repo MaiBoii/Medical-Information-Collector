@@ -37,6 +37,7 @@
                 </a></li>
             </ul>
             
+            {% if admin and admin.id %}
             <ul class="logout-mode">
                 <li><a href="#">
                     <i class="fa-solid fa-arrow-right-from-bracket"></i>
@@ -54,15 +55,40 @@
                 </div>
             </li>
             </ul>
+
+            {% else %}
+            <ul class="logout-mode">
+                <li><a href="/login">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span class="link-name">로그인</span>
+                </a></li>
+                <li class="mode">
+                    <a href="#">
+                        <i class="fa-solid fa-moon"></i>
+                    <span class="link-name">다크 모드</span>
+                </a>
+
+                <div class="mode-toggle">
+                  <span class="switch"></span>
+                </div>
+            </ul>
+            {% endif %}
         </div>
     </nav>
     <section class="dashboard">
         <div class="top">
             <i class="fa-solid fa-list-ul sidebar-toggle"></i>
+            {% if admin and admin.id %}
             <div class="profile-box">
                 <i class="fa-solid fa-user-doctor"></i>
                 <span class="profile-name">안녕하세요 마승욱 선생님!</span>
             </div>
+            {% else %}
+            <div class="profile-box">
+                <i class="fa-solid fa-circle-user"></i>
+                <span class="profile-name"> 로그인 하시겠어요?</span>
+            </div>
+            {% endif %}
         </div>
             
             <!--<img src="images/profile.jpg" alt="">-->

@@ -1,16 +1,17 @@
 const passport = require('passport');
-const localStrategy  = require('./localStrategy');
+const local  = require('./localStrategy');
+const Admin = require('../models/admin');
 
 module.exports = () => {
-    passport.serializeUser((user, done) => {
-        done(null, user.id);
+    passport.serializeUser((admin, done) => {
+        done(null, admin.id);
     });
 
     passport.deserializeUser((id, done) => {
-        User.findOne({ where: { id } })
-            .then(user => done(null, user))
+        Admin.findOne({ where: { id } })
+            .then(user => done(null, admin))
             .catch(err => done(err));
     });
 
-    localStrategy();
+    local();
 };

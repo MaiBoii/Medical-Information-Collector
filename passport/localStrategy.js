@@ -6,7 +6,7 @@ const Admin = require('../models/admin');
 
 module.exports = () => {
     passport.use(new LocalStrategy({
-        adminnameField: 'email',
+        usernameField: 'email',
         passwordField: 'password',
     }, async (email, password, done) => {
         try {

@@ -27,7 +27,7 @@ router.post('/register', isNotLoggedIn, async (req, res, next) => {
 });
 
 
-router.post('/login', isNotLoggedIn, (req, res, next) => {
+router.post('/login', (req, res, next) => {
     passport.authenticate('local', (authError, admin, info) => {
         if (authError) {
             console.error(authError);
@@ -41,15 +41,16 @@ router.post('/login', isNotLoggedIn, (req, res, next) => {
                 console.error(loginError);
                 return next(loginError);
             }
-            return res.redirect('/');
+            console.log('로그인 성공');
+            return res.redirect('/patient');
         });
     })(req, res, next);
 });
 
 router.get('/logout', isLoggedIn, (req, res) => {
-    req.logout();
-    req.session.destroy();
-    res.redirect('/');
+    req.logout(() => {
+        res.redirect('/');
+    });
 });
 
 module.exports = router;

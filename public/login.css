@@ -369,6 +369,15 @@ input[type=text]:placeholder {
   transition: all 0.3s ease-in-out;
 }
 
+.Icon{
+  margin: 10px;
+  font-size: 100px;
+}
+
+.Icon i{
+  color: #39ace7;
+}
+
 
 /* ANIMATIONS */
 
