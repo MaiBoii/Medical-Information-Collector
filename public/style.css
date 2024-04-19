@@ -579,3 +579,51 @@ nav.close ~ .dashboard .top{
         width: 100%;
     }
 }
+
+/* Chart CSS */
+.chart-container{
+    width: 100%;
+    height: 650px;
+    display: flex;
+    margin-top: 20px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.chart-container .first-chart{
+    width: 40%;
+    height: 45%;
+    background-color: var(--panel-color);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: #cfd4d8 0px 0px 5px 0px;
+}
+
+.chart-container .second-chart{
+    width: 57%;
+    height: 45%;
+    background-color: var(--panel-color);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: #cfd4d8 0px 0px 5px 0px;
+}
+
+.chart-container .third-chart{
+    width: 57%;
+    height: 45%;
+    margin-top: 10px;
+    background-color: var(--panel-color);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: #cfd4d8 0px 0px 5px 0px;
+}
+
+.chart-container .fourth-chart{
+    width: 40%;
+    height: 45%;
+    margin-top: 10px;
+    background-color: var(--panel-color);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: #cfd4d8 0px 0px 5px 0px;
+}

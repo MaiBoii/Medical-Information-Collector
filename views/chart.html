@@ -7,7 +7,7 @@
     
     <link rel="stylesheet" href="/style.css">
     <script src="https://kit.fontawesome.com/6edffaec60.js" crossorigin="anonymous"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <title>환자 정보 -헬스케어</title>
 </head>
@@ -27,7 +27,7 @@
                     <i class="fa-solid fa-table-list"></i>
                     <span class="link-name">환자 목록</span>
                 </a></li>
-                <li><a href="/static">
+                <li><a href="#">
                     <i class="fa-solid fa-chart-pie"></i>
                     <span class="link-name">통계</span>
                 </a></li>
@@ -37,7 +37,7 @@
                 </a></li>
             </ul>
             
-            {% if admin and admin.id %}
+            {% if user and user.id %}
             <ul class="logout-mode">
                 <li><a href="#">
                     <i class="fa-solid fa-arrow-right-from-bracket"></i>
@@ -67,7 +67,6 @@
                         <i class="fa-solid fa-moon"></i>
                     <span class="link-name">다크 모드</span>
                 </a>
-
                 <div class="mode-toggle">
                   <span class="switch"></span>
                 </div>
@@ -78,10 +77,10 @@
     <section class="dashboard">
         <div class="top">
             <i class="fa-solid fa-list-ul sidebar-toggle"></i>
-            {% if admin and admin.id %}
+            {% if user and user.id %}
             <div class="profile-box">
                 <i class="fa-solid fa-user-doctor"></i>
-                <span class="profile-name">안녕하세요 {{ admin.name }} 선생님!</span>
+                <span class="profile-name">안녕하세요 {{ user.name }} 선생님!</span>
             </div>
             {% else %}
             <div class="profile-box">
@@ -92,68 +91,46 @@
         </div>
             <!--<img src="images/profile.jpg" alt="">-->
         </div>
-        
         <div class="dash-content">
             <div class="overview">
-                <div class="profile">
-                        <table class="profile-table">
-                                  <tr>
-                                    <td rowspan="3" class="profile-img ">
-                                        <img src="/할배.jpeg">
-                                    </td>
-                                    <td class="profile-category">이름 : </td>
-                                    <td class="profile-info">{{ patient.name }}</td>
-                                    <td class="profile-category">호실 : </td>
-                                    <td class="profile-info">{{ patient.room_number }} 호</td>
-                                  </tr>
-                                  <tr>
-                                    <td class="profile-category">성별 : </td>
-                                    <td class="profile-info">{{ patient.gender }}</td>
-                                    <td class="profile-category">E-Mail : </td>
-                                    <td class="profile-info">{{ patient.email }}</td>
-                                  </tr>
-                                  <tr>
-                                    <td class="profile-category">나이 : </td>
-                                    <td class="profile-info">{{ patient.age }} 세</td>
-                                    <td class="profile-category">상태 : </td>
-                                    <td class="profile-info">{{ patient.status }}</td>
-                                  </tr>
-                    </table>
-                </div>
-
-                <div class="boxes">
-                    <div class="box box1">
-                        <i class="fa-solid fa-heart-pulse"></i>
-                        <span class="text">심박수</span>
-                        <span class="number">50,120</span>
+            <div class="activity">
+                <div class="chart-container">
+                    <div class = "first-chart">
+                        <canvas id="firstChart"></canvas>
                     </div>
-                    <div class="box box2">
-                        <i class="fa-solid fa-temperature-three-quarters"></i>
-                        <span class="text">체온</span>
-                        <span class="number">20,120</span>
+                    <div class = "second-chart">
+                        <canvas id="secondChart"></canvas>
                     </div>
-                    <div class="box box3">
-                        <i class="fa-solid fa-wheelchair"></i>
-                        <span class="text">이동 거리</span>
-                        <span class="number">10,120</span>
+                    <div class = "third-chart">
+                        <canvas id="thirdChart"></canvas>
                     </div>
-                    <div class="box box4">
-                        <i class="fa-solid fa-head-side-cough"></i>
-                        <span class="text">호흡 수치</span>
-                        <span class="number">10,120</span>
+                    <div class = "fourth-chart">
+                        <canvas id="fourthChart"></canvas>
                     </div>
-                    <div class="box box5">
-                        <i class="fa-solid fa-lungs"></i>
-                        <span class="text">산소포화도</span>
-                        <span class="number">10,120</span>
-                    </div>
-                </div>
-            </div>
-
-            </div>
+                </div>  
         </div>
     </section>
-
-    <script src="/script.js"></script>
-</body>
-</html>
+        <script src="script.js"></script>
+        <script>
+            const cht = `{{ chartData | dump | safe }}`;
+            const obj = JSON.parse(cht);
+            var ctx = document.getElementById('firstChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: obj,
+                options: {
+                    responsive: true,
+                    plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: '환자 건강 현황'
+                    }
+                    }
+                },
+            });
+        </script>
+    </body>
+    </html>

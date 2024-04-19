@@ -47,6 +47,45 @@ router.get('/patient/:id', async (req, res, next) => {
     }
   });
 
+  // 전체 환자 정보 통계 페이지 라우팅
+router.get('/chart', async (req, res, next) => {
+    try {
+        const patients = await Patient.findAll(); // 모든 환자를 가져옵니다.
+
+        const statusCount = {
+            '안전': 0,
+            '주의': 0,
+            '위험': 0
+        };
+
+        patients.forEach(patient => {
+            statusCount[patient.status]++;
+        });
+
+        const chartData = {
+            labels: ['안전', '주의', '위험'],
+            datasets: [{
+                label: '환자 상태',
+                backgroundColor: ['rgb(54, 162, 235)',
+                                  'rgb(255, 205, 86)',
+                                  'rgb(255, 99, 132)'],
+                data: [statusCount['안전'], statusCount['주의'], statusCount['위험']]
+            }]
+        };
+
+        res.render('chart', { chartData });
+
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+// //병원 관계자 로그인
+// router.get('/chart', (req, res) => {
+//     res.render('chart', { title: '통계 - HealthCare' });
+// });
+
 //병원 관계자 로그인
 router.get('/login', isNotLoggedIn, (req, res) => {
     res.render('login', { title: '로그인 - HealthCare' });
