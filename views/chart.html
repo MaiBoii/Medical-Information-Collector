@@ -112,12 +112,15 @@
     </section>
         <script src="script.js"></script>
         <script>
-            const cht = `{{ chartData | dump | safe }}`;
-            const obj = JSON.parse(cht);
-            var ctx = document.getElementById('firstChart').getContext('2d');
-            var myChart = new Chart(ctx, {
+            const obj1 = JSON.parse(`{{ FirstchartData | dump | safe }}`);
+            const obj2 = JSON.parse(`{{ SecondchartData | dump | safe }}`);
+            const obj3 = JSON.parse(`{{ ThirdchartData | dump | safe }}`);
+            const obj4 = JSON.parse(`{{ FourthchartData | dump | safe }}`);
+            
+            var ctx1 = document.getElementById('firstChart').getContext('2d');
+            var myChart1 = new Chart(ctx1, {
                 type: 'doughnut',
-                data: obj,
+                data: obj1,
                 options: {
                     responsive: true,
                     plugins: {
@@ -130,6 +133,60 @@
                     }
                     }
                 },
+            })
+            
+            var ctx2 = document.getElementById('secondChart').getContext('2d');
+            var myChart2 = new Chart(ctx2, {
+                type: 'bar',
+                data: obj2,
+                options: {
+                    responsive: true,
+                    plugins: {
+                    legend: {
+                        position: 'none'
+                    },
+                    title: {
+                        display: true,
+                        text: '호실별 환자 수'
+                    }
+                    }
+                },
+            })
+
+            var ctx3 = document.getElementById('thirdChart').getContext('2d');
+            var myChart3 = new Chart(ctx3, {
+                type: 'bar',
+                data: obj3,
+                options: {
+                    responsive: true,
+                    plugins: {
+                    legend: {
+                        position: 'none'
+                    },
+                    title: {
+                        display: true,
+                        text: '나이별 분포'
+                    }
+                    }
+                },
+            })
+            
+            var ctx4 = document.getElementById('fourthChart').getContext('2d');
+            var myChart4 = new Chart(ctx4, {
+                type: 'pie',
+                data: obj4,
+                options: {
+                    responsive: true,
+                    plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: '성별 분포'
+                    }
+                    }
+                }
             });
         </script>
     </body>

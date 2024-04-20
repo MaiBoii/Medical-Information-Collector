@@ -1,6 +1,7 @@
 const express = require('express');
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 const { Patient } = require('../models');
+const { ge } = require('faker/lib/locales');
 
 const router = express.Router();
 
@@ -47,22 +48,73 @@ router.get('/patient/:id', async (req, res, next) => {
     }
   });
 
-  // 전체 환자 정보 통계 페이지 라우팅
+// 전체 환자 정보 통계 페이지 라우팅
 router.get('/chart', async (req, res, next) => {
     try {
-        const patients = await Patient.findAll(); // 모든 환자를 가져옵니다.
-
+        const patients = await Patient.findAll();
         const statusCount = {
             '안전': 0,
             '주의': 0,
             '위험': 0
         };
+        const genderCount = {
+            '남성': 0,
+            '여성': 0,
+            '기타': 0
+        };
+        const ageCount = {
+            '10대': 0,
+            '20대': 0,
+            '30대': 0,
+            '40대': 0,
+            '50대': 0,
+            '60대': 0,
+            '70대': 0,
+            '80대': 0,
+            '90대': 0,
+            '100대': 0
+        };
 
+        const roomCount = {
+            '101': 0,
+            '102': 0,
+            '103': 0,
+            '104': 0,
+            '105': 0,
+            '106': 0,
+            '107': 0,
+            '108': 0,
+            '109': 0,
+            '110': 0
+        };
         patients.forEach(patient => {
             statusCount[patient.status]++;
+            genderCount[patient.gender]++;
+            const age = patient.age;
+            if (age < 20) {
+                ageCount['10대']++;
+            } else if (age < 30) {
+                ageCount['20대']++;
+            } else if (age < 40) {
+                ageCount['30대']++;
+            } else if (age < 50) {
+                ageCount['40대']++;
+            } else if (age < 60) {
+                ageCount['50대']++;
+            } else if (age < 70) {
+                ageCount['60대']++;
+            } else if (age < 80) {
+                ageCount['70대']++;
+            } else if (age < 90) {
+                ageCount['80대']++;
+            } else {
+                ageCount['90대']++;
+            } 
+            roomCount[patient.room_number]++;
         });
 
-        const chartData = {
+        // FirstchartData: 안전, 주의, 위험 환자 수 표기 차트 데이터
+        const FirstchartData = {
             labels: ['안전', '주의', '위험'],
             datasets: [{
                 label: '환자 상태',
@@ -73,7 +125,54 @@ router.get('/chart', async (req, res, next) => {
             }]
         };
 
-        res.render('chart', { chartData });
+        const SecondchartData = {
+            labels: ['101호', '102호', '103호', '104호', '105호', '106호', '107호', '108호', '109호', '110호'],
+            datasets: [{
+                label: '방 번호',
+                backgroundColor: ['rgb(54, 162, 235)',
+                                  'rgb(255, 205, 86)',
+                                  'rgb(255, 99, 132)',
+                                  'rgb(75, 192, 192)',
+                                  'rgb(153, 102, 255)',
+                                  'rgb(255, 159, 64)',
+                                  'rgb(255, 99, 132)',
+                                  'rgb(54, 162, 235)',
+                                  'rgb(255, 205, 86)',
+                                  'rgb(255, 99, 132)'],
+                data: [roomCount['101'], roomCount['102'], roomCount['103'], roomCount['104'], roomCount['105'], roomCount['106'], roomCount['107'], roomCount['108'], roomCount['109'], roomCount['110']]
+            }]
+        };
+
+        const ThirdchartData = {
+            labels: ['10대', '20대', '30대', '40대', '50대', '60대', '70대', '80대', '90대'],
+            datasets: [{
+                label: '나이대',
+                backgroundColor: ['rgb(54, 162, 235)',
+                                  'rgb(255, 205, 86)',
+                                  'rgb(255, 99, 132)',
+                                  'rgb(75, 192, 192)',
+                                  'rgb(153, 102, 255)',
+                                  'rgb(255, 159, 64)',
+                                  'rgb(255, 99, 132)',
+                                  'rgb(54, 162, 235)',
+                                  'rgb(255, 205, 86)'],
+                data: [ageCount['10대'], ageCount['20대'], ageCount['30대'], ageCount['40대'], ageCount['50대'], ageCount['60대'], ageCount['70대'], ageCount['80대'], ageCount['90대'], ageCount['100대']]
+            }]
+        };
+
+
+        const FourthchartData = {
+            labels: ['남성', '여성', '기타'],
+            datasets: [{
+                label: '성별',
+                backgroundColor: ['rgb(54, 162, 235)',
+                                  'rgb(255, 205, 86)',
+                                  'rgb(255, 99, 132)'],
+                data: [genderCount['남성'], genderCount['여성'], genderCount['기타']]
+            }]
+        };
+
+        res.render('chart', { FirstchartData, SecondchartData, ThirdchartData, FourthchartData});
 
     } catch (error) {
         console.error('Error fetching data:', error);
