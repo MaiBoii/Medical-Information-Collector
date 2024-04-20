@@ -27,7 +27,7 @@
                     <i class="fa-solid fa-table-list"></i>
                     <span class="link-name">환자 목록</span>
                 </a></li>
-                <li><a href="/static">
+                <li><a href="/chart">
                     <i class="fa-solid fa-chart-pie"></i>
                     <span class="link-name">통계</span>
                 </a></li>
@@ -37,7 +37,7 @@
                 </a></li>
             </ul>
             
-            {% if admin and admin.id %}
+            {% if user and user.id %}
             <ul class="logout-mode">
                 <li><a href="#">
                     <i class="fa-solid fa-arrow-right-from-bracket"></i>
@@ -78,10 +78,10 @@
     <section class="dashboard">
         <div class="top">
             <i class="fa-solid fa-list-ul sidebar-toggle"></i>
-            {% if admin and admin.id %}
+            {% if user and user.id %}
             <div class="profile-box">
                 <i class="fa-solid fa-user-doctor"></i>
-                <span class="profile-name">안녕하세요 {{ admin.name }} 선생님!</span>
+                <span class="profile-name">안녕하세요 {{ user.name }} 선생님!</span>
             </div>
             {% else %}
             <div class="profile-box">
@@ -125,27 +125,38 @@
                     <div class="box box1">
                         <i class="fa-solid fa-heart-pulse"></i>
                         <span class="text">심박수</span>
-                        <span class="number">50,120</span>
+                        <span class="number">{{biometrics.heart_rate}} <span class="unit">bpm</span></span>
                     </div>
                     <div class="box box2">
                         <i class="fa-solid fa-temperature-three-quarters"></i>
                         <span class="text">체온</span>
-                        <span class="number">20,120</span>
+                        <span class="number">{{biometrics.temperature}} <span class="unit">℃</span> </span>
                     </div>
                     <div class="box box3">
                         <i class="fa-solid fa-wheelchair"></i>
-                        <span class="text">이동 거리</span>
-                        <span class="number">10,120</span>
+                        <span class="text">일일 이동 거리</span>
+                        <span class="number">{{biometrics.distance_travelled}} <span class="unit">km</span> </span>
                     </div>
                     <div class="box box4">
                         <i class="fa-solid fa-head-side-cough"></i>
                         <span class="text">호흡 수치</span>
-                        <span class="number">10,120</span>
+                        <span class="number">{{biometrics.respiration_rate}} <span class="unit">rpm</span> </span>
                     </div>
                     <div class="box box5">
                         <i class="fa-solid fa-lungs"></i>
                         <span class="text">산소포화도</span>
-                        <span class="number">10,120</span>
+                        <span class="number">{{biometrics.oxygen_saturation}} <span class="unit">%</span> </span>
+                    </div>
+                </div>
+
+                <div class="profile-charts">
+                    <div class="chart chart1">
+                        <span class="chart-title">심박수</span>
+                        <canvas id="chart1"></canvas>
+                    </div>
+                    <div class="chart chart2">
+                        <span class="chart-title">체온</span>
+                        <canvas id="chart2"></canvas>
                     </div>
                 </div>
             </div>

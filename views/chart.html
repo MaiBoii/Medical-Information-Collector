@@ -117,8 +117,8 @@
             const obj3 = JSON.parse(`{{ ThirdchartData | dump | safe }}`);
             const obj4 = JSON.parse(`{{ FourthchartData | dump | safe }}`);
             
-            var ctx1 = document.getElementById('firstChart').getContext('2d');
-            var myChart1 = new Chart(ctx1, {
+            let ctx1 = document.getElementById('firstChart').getContext('2d');
+            let myChart1 = new Chart(ctx1, {
                 type: 'doughnut',
                 data: obj1,
                 options: {
@@ -135,8 +135,8 @@
                 },
             })
             
-            var ctx2 = document.getElementById('secondChart').getContext('2d');
-            var myChart2 = new Chart(ctx2, {
+            let ctx2 = document.getElementById('secondChart').getContext('2d');
+            let myChart2 = new Chart(ctx2, {
                 type: 'bar',
                 data: obj2,
                 options: {
@@ -153,8 +153,8 @@
                 },
             })
 
-            var ctx3 = document.getElementById('thirdChart').getContext('2d');
-            var myChart3 = new Chart(ctx3, {
+            let ctx3 = document.getElementById('thirdChart').getContext('2d');
+            let myChart3 = new Chart(ctx3, {
                 type: 'bar',
                 data: obj3,
                 options: {
@@ -171,12 +171,13 @@
                 },
             })
             
-            var ctx4 = document.getElementById('fourthChart').getContext('2d');
-            var myChart4 = new Chart(ctx4, {
+            let ctx4 = document.getElementById('fourthChart').getContext('2d');
+            let myChart4 = new Chart(ctx4, {
                 type: 'pie',
                 data: obj4,
                 options: {
                     responsive: true,
+                    maintainAspectRatio: false, // 비율 유지 옵션
                     plugins: {
                     legend: {
                         position: 'top',

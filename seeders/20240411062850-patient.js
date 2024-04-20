@@ -30,8 +30,21 @@ const patient = [...Array(100)].map((user) => (
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {   
-    await queryInterface.bulkInsert('Patient', patient, {});
+  async up(queryInterface, Sequelize) {
+    try {
+      // Patient 테이블에 데이터가 있는지 확인
+      const existingData = await queryInterface.sequelize.query('SELECT * FROM patient;');
+
+      // 데이터가 없을 때만 시딩을 실행
+      if (existingData[0].length === 0) {
+        await queryInterface.bulkInsert('Patient', patient, {});
+        console.log('Patient 데이터가 성공적으로 생성되었습니다.');
+      } else {
+        console.log('Patient 데이터가 이미 존재합니다. 시딩을 스킵합니다.');
+      }
+    } catch (error) {
+      console.error('Patient 데이터 생성 중 오류가 발생했습니다:', error);
+    }
   },
 
   async down (queryInterface, Sequelize) {

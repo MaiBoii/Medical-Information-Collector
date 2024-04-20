@@ -4,7 +4,7 @@ module.exports = class Biometric extends Sequelize.Model {
     static init(sequelize) {
         return super.init({
               oxygen_saturation: {
-                type: Sequelize.DECIMAL(5, 2),
+                type: Sequelize.INTEGER,
                 allowNull: false
               },
               respiration_rate: {
@@ -16,18 +16,23 @@ module.exports = class Biometric extends Sequelize.Model {
                 allowNull: false
               },
               distance_travelled: {
-                type: Sequelize.DECIMAL(10, 2),
+                type: Sequelize.FLOAT(5, 2),
                 allowNull: false
               },
               temperature: {
-                type: Sequelize.DECIMAL(5, 2),
+                type: Sequelize.FLOAT(5, 2),
                 allowNull: false
-              }
+              },
+              created_at: {
+                type: Sequelize.DATE,
+                allowNull: false,
+                defaultValue: Sequelize.literal('now()'),
+              },
         }, {
             sequelize,
             timestamps: false,
             underscored: false,
-            modelName: 'BioMetric',
+            modelName: 'Biometric',
             tableName: 'biometric',
             paranoid: false,
             charset: 'utf8',
