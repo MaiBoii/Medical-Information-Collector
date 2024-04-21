@@ -7,7 +7,8 @@
 IoT 기술을 활용한 의료 정보 수집 및 분석 자동화 서비스
 
 ## 사용 기술
-- Node.js
+- Express.js
+- Arduino
 - AWS 
 - Tensorflow
 

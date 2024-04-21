@@ -57,7 +57,7 @@ module.exports = {
 
         console.log('Biometric 데이터가 성공적으로 생성되었습니다.');
       } else {
-        console.log('Biometric 데이터가 이미 존재합니다. 시딩을 스킵합니다.');
+        console.log('Biometric 데이터가 이미 존재합니다. Seeding을 스킵합니다.');
       }
     } catch (error) {
       console.error('Biometric 데이터 생성 중 오류가 발생했습니다:', error);
