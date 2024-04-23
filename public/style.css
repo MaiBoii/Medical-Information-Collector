@@ -635,15 +635,17 @@ nav.close ~ .dashboard .top{
 }
 
 .profile-charts {
-    align-self: center;
     width: 90%;
-    height: 50%;
+    height: 300px;
     margin: auto;
     margin-top: 20px;
-    display: flex;
     border-collapse: collapse;
     box-shadow: #cfd4d8 0px 0px 5px 0px;
     border-radius: 10px;
+}
+
+.profile-charts .chart1 {
+    padding: 20px;
 }
 
 .unit {

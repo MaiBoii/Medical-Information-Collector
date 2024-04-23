@@ -41,9 +41,9 @@ router.get('/patient/:id', async (req, res, next) => {
 
         // 환자의 최근 7개 생체 정보 조회
         const biometrics = await Biometric.findAll({
-        where: { patient_id: patientId },
-        order: [['created_at', 'DESC']], // 최신 순으로 정렬
-        limit: 7 // 최근 7개만 가져옴
+            where: { patient_id: patientId },
+            order: [['created_at', 'DESC']], // 최신 순으로 정렬
+            limit: 7 // 최근 7개만 가져옴
         });
 
         // 생체 정보의 각 항목별 평균 계산
@@ -63,13 +63,16 @@ router.get('/patient/:id', async (req, res, next) => {
         
         res.render('profile', { 
         patient,
-        biometrics:averageBiometrics
+        biometrics:averageBiometrics,
+        chart_data: biometrics
     });
     } catch (err){
         console.error(err);
         next(err);
     }
   });
+
+
 
 // 전체 환자 정보 통계 페이지 라우팅
 router.get('/chart', async (req, res, next) => {

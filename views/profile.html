@@ -7,6 +7,7 @@
     
     <link rel="stylesheet" href="/style.css">
     <script src="https://kit.fontawesome.com/6edffaec60.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
     <title>환자 정보 -헬스케어</title>
@@ -148,23 +149,235 @@
                         <span class="number">{{biometrics.oxygen_saturation}} <span class="unit">%</span> </span>
                     </div>
                 </div>
-
                 <div class="profile-charts">
                     <div class="chart chart1">
-                        <span class="chart-title">심박수</span>
-                        <canvas id="chart1"></canvas>
-                    </div>
-                    <div class="chart chart2">
-                        <span class="chart-title">체온</span>
-                        <canvas id="chart2"></canvas>
+                        <canvas id="chart1" style="position: relative; height:35vh; width:30vw" ></canvas>
                     </div>
                 </div>
             </div>
-
             </div>
         </div>
     </section>
 
     <script src="/script.js"></script>
+    <script>
+        const obj = JSON.parse(`{{ chart_data | dump | safe }}`);
+        const heartRates = obj.map(obj => obj.heart_rate);
+        const temperatures = obj.map(obj => obj.temperature);
+        const distanceTravelled = obj.map(obj => obj.distance_travelled);
+        const respirationRate = obj.map(obj => obj.respiration_rate);
+        const oxygenSaturation = obj.map(obj => obj.oxygen_saturation);
+        
+        let heartRates_ctx = document.getElementById('chart1').getContext('2d');
+        let temperature_ctx = document.getElementById('chart1').getContext('2d');
+        let distanceTravelled_ctx = document.getElementById('chart1').getContext('2d');
+        let respirationRate_ctx = document.getElementById('chart1').getContext('2d');
+        let oxygenSaturation_ctx = document.getElementById('chart1').getContext('2d');
+
+        let temperature_chart;
+        let distance_travelled_chart;
+        let respiration_rate_chart;
+        let oxygen_saturation_chart;
+
+        let heart_rate_chart = new Chart(heartRates_ctx, {
+            type: 'line',
+            data: {
+                labels: Array.from(Array(heartRates.length).keys()),
+                datasets: [{
+                    label: '심박수',
+                    fill: true,
+                    data: heartRates,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        }
+        );
+
+        function drawTemperatureChart() {
+            let chartStatus = Chart.getChart('chart1');
+            if (chartStatus !== undefined) {
+                chartStatus.destroy();
+            }
+            temperature_chart = new Chart(temperature_ctx, {
+                type: 'line',
+                data: {
+                    labels: Array.from(Array(temperatures.length).keys()),
+                    datasets: [{
+                        label: '체온',
+                        fill: true,
+                        data: temperatures,
+                        backgroundColor: 'rgba(255, 165, 55, 0.2)',
+                        borderColor: 'rgba(255, 165, 55, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            min: 35,
+                            max: 40,
+                        }
+                    }
+                }
+            }
+        );
+    }
+
+    function drawHeartRateChart() {
+        let chartStatus = Chart.getChart('chart1');
+        if (chartStatus !== undefined) {
+            chartStatus.destroy();
+        }
+        let heart_rate_chart = new Chart(heartRates_ctx, {
+            type: 'line',
+            data: {
+                labels: Array.from(Array(heartRates.length).keys()),
+                datasets: [{
+                    label: '심박수',
+                    fill: true,
+                    data: heartRates,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        }
+        );
+    }
+
+    function drawDistanceTravelled() {
+            let chartStatus = Chart.getChart('chart1');
+            if (chartStatus !== undefined) {
+                chartStatus.destroy();
+            }
+            distance_travelled_chart = new Chart(distanceTravelled_ctx, {
+                type: 'line',
+                data: {
+                    labels: Array.from(Array(distanceTravelled.length).keys()),
+                    datasets: [{
+                        label: '일일 이동 거리',
+                        fill: true,
+                        data: distanceTravelled,
+                        backgroundColor: 'rgba(255, 55, 202, 0.2)',
+                        borderColor: 'rgba(255, 55, 202, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            }
+        );
+    }
+
+    function drawRespirationRate() {
+            let chartStatus = Chart.getChart('chart1');
+            if (chartStatus !== undefined) {
+                chartStatus.destroy();
+            }
+            distance_travelled_chart = new Chart(respirationRate_ctx, {
+                type: 'line',
+                data: {
+                    labels: Array.from(Array(respirationRate.length).keys()),
+                    datasets: [{
+                        label: '일일 호흡 수치',
+                        fill: true,
+                        data: respirationRate,
+                        backgroundColor: 'rgba(55, 175, 255, 0.2)',
+                        borderColor: 'rgba(55, 175, 255, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            }
+        );
+    }
+
+    function drawOxygenSaturation() {
+            let chartStatus = Chart.getChart('chart1');
+            if (chartStatus !== undefined) {
+                chartStatus.destroy();
+            }
+            distance_travelled_chart = new Chart(oxygenSaturation_ctx, {
+                type: 'line',
+                data: {
+                    labels: Array.from(Array(oxygenSaturation.length).keys()),
+                    datasets: [{
+                        label: '산소포화도',
+                        fill: true,
+                        data: oxygenSaturation,
+                        backgroundColor: 'rgba(55, 255, 178, 0.2)',
+                        borderColor: 'rgba(55, 255, 178, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            min: 80,
+                            max: 100,
+                        }
+                    }
+                }
+            }
+        );
+    }
+
+
+    // Event Listeners
+    document.querySelector('.box1').addEventListener('click', () => {
+        drawHeartRateChart();
+    });
+
+    document.querySelector('.box2').addEventListener('click', () => {
+        drawTemperatureChart();
+    });
+
+    document.querySelector('.box3').addEventListener('click', () => {
+        drawDistanceTravelled();
+    });
+
+    document.querySelector('.box4').addEventListener('click', () => {
+        drawRespirationRate();
+    });
+
+    document.querySelector('.box5').addEventListener('click', () => {
+        drawOxygenSaturation();
+    });
+    </script>
+
+
 </body>
 </html>
