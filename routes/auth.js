@@ -19,7 +19,7 @@ router.post('/register', isNotLoggedIn, async (req, res, next) => {
             name,
             password: hash,
         });
-        return res.redirect('/');
+        return res.redirect('/patient');
     } catch (error) {
         console.error(error);
         return next(error);
@@ -42,14 +42,14 @@ router.post('/login', isNotLoggedIn, (req, res, next) => {
             }
             console.log('로그인 성공');
             console.log('세션에 저장된 admin', user);
-            return res.redirect('/');
+            return res.redirect('/patient');
         });
     })(req, res, next);
 });
 
 router.get('/logout', isLoggedIn, (req, res) => {
     req.logout(() => {
-        res.redirect('/');
+        res.redirect('/patient');
     });
 });
 
