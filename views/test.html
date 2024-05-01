@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+</head>
+<body>
+    <h1>Image Gallery</h1>
+
+    <!-- 이미지 업로드 폼 -->
+    <form action="/profile/img" method="post" enctype="multipart/form-data">
+        <input type="file" name="image" accept="image/*">
+        <button type="submit">Upload</button>
+    </form>
+
+    <hr>
+
+    <!-- 이미지 목록 -->
+    <div>
+        {% for image in images %}
+            <img src="{{ image.path }}" alt="Image">
+            <a href="/edit/{{ image.id }}">Edit</a>
+        {% endfor %}
+    </div>
+</body>
+</html>

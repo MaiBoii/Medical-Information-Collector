@@ -17,7 +17,7 @@ module.exports = {
 
             // 각 환자에 대해 10개씩의 Biometric 데이터 생성
             patients[0].forEach(patient => {
-              for (let i = 0; i < 10; i++) {
+              for (let i = 0; i < 1000; i++) {
                 // Biometric 데이터 항목 생성
                 const data = {
                   oxygen_saturation: getRandomDecimal(90, 100, 2), // 산소 포화도 (90부터 100 사이의 랜덤한 실수)

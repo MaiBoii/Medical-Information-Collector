@@ -34,6 +34,11 @@ module.exports = class Patient extends Sequelize.Model {
               status:{
                 type: Sequelize.ENUM('안전', '주의', '위험'),
                 allowNull: false
+              },
+              profile_img: {
+                type: Sequelize.STRING(200),
+                allowNull: true,
+                defaultValue: 'default.png'
               }
         }, {
             sequelize,
