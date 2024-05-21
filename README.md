@@ -11,8 +11,8 @@ IoT 기술을 활용한 의료 정보 수집 및 분석 자동화 서비스
 
 - Express.js
 - Arduino && Raspberry Pi
-- AWS
 - Tensorflow
+- LTE Router
 
 ## 주요 기능
 
