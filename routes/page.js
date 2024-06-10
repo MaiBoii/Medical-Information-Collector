@@ -1,6 +1,7 @@
 const express = require('express');
-const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
+const { isLoggedIn, isNotLoggedIn} = require('./middlewares');
 const { Patient, Biometric } = require('../models');
+const evaluatePatientHealth = require('./evaluatePatientHealth'); // 실제 파일 경로로 수정
 
 const router = express.Router();
 
@@ -14,6 +15,43 @@ router.use((req, res, next) => {
 // 메인 페이지
 router.get('/', (req, res) => {
     res.render('index', { title: '메인 페이지 - HealthCare' });
+});
+
+// Post 방식으로 Json 데이터를 받아서 환자 생체 정보 등록
+// 생체 정보 등록 및 환자 상태 평가
+router.post('/biometric', async (req, res, next) => {
+    try {
+        const { patient_id, oxygen_saturation, respiration_rate, heart_rate, distance_travelled, temperature } = req.body;
+
+        // 생체 정보 저장
+        const biometric = await Biometric.create({
+            patient_id,
+            oxygen_saturation,
+            respiration_rate,
+            heart_rate,
+            distance_travelled,
+            temperature
+        });
+
+        // 환자의 상태 평가
+        const status = await evaluatePatientHealth({
+            oxygen_saturation,
+            respiration_rate,
+            heart_rate,
+            temperature
+        });
+
+        // 환자의 상태 업데이트
+        const patient = await Patient.findByPk(patient_id);
+        if (patient) {
+            await patient.update({ status });
+        }
+
+        res.status(201).json(biometric);
+    } catch (error) {
+        console.error(error);
+        next(error);
+    }
 });
 
 //환자 리스트 페이지

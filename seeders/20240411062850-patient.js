@@ -1,4 +1,5 @@
 const faker = require("faker");
+const evaluatePatientHealth = require("../routes");
 
 faker.locale = "ko";
 
