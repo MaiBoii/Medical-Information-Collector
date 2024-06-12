@@ -1,7 +1,18 @@
 const express = require('express');
 const { isLoggedIn, isNotLoggedIn} = require('./middlewares');
 const { Patient, Biometric } = require('../models');
-const evaluatePatientHealth = require('./evaluatePatientHealth'); // 실제 파일 경로로 수정
+
+async function evaluatePatientHealth({ oxygen_saturation, respiration_rate, heart_rate, temperature }) {
+    let status = '안전';
+  
+    if (oxygen_saturation < 90 || respiration_rate < 12 || respiration_rate > 30 || heart_rate < 60 || heart_rate > 120 || temperature < 36.0 || temperature > 38.0) {
+        status = '위험';
+    } else if (oxygen_saturation < 95 || respiration_rate < 12 || respiration_rate > 20 || heart_rate < 60 || heart_rate > 100 || temperature < 36.5 || temperature > 37.5) {
+        status = '주의';
+    }
+  
+    return status;
+  }
 
 const router = express.Router();
 
@@ -16,6 +27,17 @@ router.use((req, res, next) => {
 router.get('/', (req, res) => {
     res.render('index', { title: '메인 페이지 - HealthCare' });
 });
+
+
+router.post('/', (req, res) => {
+    const data = req.body;
+    console.log(data);
+    res.json({
+        message: 'Data received',
+        receivedData: data
+    });
+});
+
 
 // Post 방식으로 Json 데이터를 받아서 환자 생체 정보 등록
 // 생체 정보 등록 및 환자 상태 평가

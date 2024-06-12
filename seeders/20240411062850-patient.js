@@ -1,9 +1,9 @@
 const faker = require("faker");
-const evaluatePatientHealth = require("../routes");
+//const { evaluatePatientHealth } = require("../routes");
 
 faker.locale = "ko";
 
-const genders = ["남성", "여성", "기타"];
+const genders = ["남성", "여성"];
 const room_numbers = [
   "101",
   "102",
@@ -16,7 +16,6 @@ const room_numbers = [
   "109",
   "110",
 ];
-const status = ["안전", "주의", "위험"];
 
 function getRandomEnumValue(values) {
   const randomIndex = Math.floor(Math.random() * values.length);
@@ -34,7 +33,7 @@ const patient = [...Array(100)].map((user) => ({
   room_number: getRandomEnumValue(room_numbers),
   email: faker.internet.email(),
   address: faker.address.streetAddress(),
-  status: getRandomEnumValue(status),
+  status: '미정',
 }));
 
 /** @type {import('sequelize-cli').Migration} */
@@ -48,7 +47,7 @@ module.exports = {
 
       // 데이터가 없을 때만 시딩을 실행
       if (existingData[0].length === 0) {
-        await queryInterface.bulkInsert("Patient", patient, {});
+        await queryInterface.bulkInsert("patient", patient, {});
         console.log("Patient 데이터가 성공적으로 생성되었습니다.");
       } else {
         console.log("Patient 데이터가 이미 존재합니다. Seeding을 스킵합니다.");
@@ -59,6 +58,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete("Patient", patient, {});
+    await queryInterface.bulkDelete("patient", patient, {});
   },
 };
